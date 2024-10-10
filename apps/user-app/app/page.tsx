@@ -1,11 +1,12 @@
-import { PrismaClient } from "@repo/db/client";
+"use client"
+import { signIn, signOut, useSession } from "next-auth/react";
+import { Appbar } from "@repo/ui/appbar";
 
-const client = new PrismaClient();
-
-export default function Home() {
+export default function Page(): JSX.Element {
+  const session = useSession();
   return (
-    <div className=" text-white bg-slate-900 h-screen text-2xl">
-      hi there
-    </div>
+   <div>
+      <Appbar onSignin={signIn} onSignout={signOut} user={session.data?.user} />
+   </div>
   );
 }

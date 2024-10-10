@@ -1,5 +1,5 @@
 {
-  "name": "online-wallet",
+  "name": "week-18",
   "private": true,
   "scripts": {
     "build": "turbo build",
@@ -8,17 +8,15 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
     "prettier": "^3.2.5",
-    "tailwindcss": "^3.4.12",
-    "turbo": "^2.1.2",
-    "typescript": "^5.4.5"
+    "turbo": "latest"
   },
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "npm@10.8.2",
+  "packageManager": "npm@10.2.4",
   "workspaces": [
     "apps/*",
     "packages/*"
