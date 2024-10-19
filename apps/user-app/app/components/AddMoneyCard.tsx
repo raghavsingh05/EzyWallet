@@ -19,34 +19,60 @@ const SUPPORTED_BANKS = [
 
 export const AddMoney = () => {
     const [redirectUrl, setRedirectUrl] = useState(SUPPORTED_BANKS[0]?.redirectUrl);
-    const [amount, setAmount] = useState(0);
-    const [provider, setProvider] = useState(SUPPORTED_BANKS[0]?.name || "")
+    const [amount, setAmount] = useState("");  // Store amount as string initially
+    const [provider, setProvider] = useState(SUPPORTED_BANKS[0]?.name || "");
+    const [isValid, setIsValid] = useState(true);  // Validation state
+
+    const handleAmountChange = (value: string) => {
+        if (/^[0-9]*$/.test(value)) {
+            setIsValid(true);
+            setAmount(value);
+        } else {
+            setIsValid(false);
+        }
+    };
+
     return (
         <Card title="Add Money">
             <div className="w-full">
-                <TextInput label={"Amount"} placeholder={"Amount"} onChange={(value) => {
-                    setAmount(Number(value))
-                }} />
-                
+                <TextInput
+                    label={"Amount"}
+                    placeholder={"Amount"}
+                    value={amount}
+                    onChange={handleAmountChange}
+                />
+                {!isValid && (
+                    <div className="text-red-500 text-sm">Invalid input: Only numbers are allowed</div>
+                )}
+
                 <div className="py-4 text-left">Bank</div>
-                
-                <Select onSelect={(value) => {
-                    setRedirectUrl(SUPPORTED_BANKS.find(x => x.name === value)?.redirectUrl || "")
-                    setProvider(SUPPORTED_BANKS.find(x => x.name === value)?.name || "")
-                }} options={SUPPORTED_BANKS.map(x => ({
-                    key: x.name,
-                    value: x.name
-                }))} />
-                
+
+                <Select
+                    onSelect={(value) => {
+                        setRedirectUrl(SUPPORTED_BANKS.find(x => x.name === value)?.redirectUrl || "");
+                        setProvider(SUPPORTED_BANKS.find(x => x.name === value)?.name || "");
+                    }}
+                    options={SUPPORTED_BANKS.map(x => ({
+                        key: x.name,
+                        value: x.name
+                    }))}
+                />
+
                 <div className="flex justify-center pt-4">
-                    <Button onClick={ async() => {
-                        await createOnRampTransaction(amount * 100, provider)
-                        window.location.href = redirectUrl || "";
-                    }}>
+                    <Button
+                        onClick={async () => {
+                            if (amount && isValid) {
+                                await createOnRampTransaction(Number(amount) * 100, provider);
+                                window.location.href = redirectUrl || "";
+                            } else {
+                                alert("Please enter a valid amount.");
+                            }
+                        }}
+                    >
                         Add Money
                     </Button>
                 </div>
             </div>
         </Card>
     );
-}
+};
