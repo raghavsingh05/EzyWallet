@@ -1,8 +1,6 @@
 
-export default function (){
-    return (
-        <div>
-            Transactions page
-        </div>
-    )
+export default function() {
+    return <div>
+        Transactions
+    </div>
 }
