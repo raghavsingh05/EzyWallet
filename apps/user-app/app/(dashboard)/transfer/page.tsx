@@ -8,7 +8,7 @@ import { authOptions } from "../../lib/auth";
 enum TransactionStatus {
     Pending = 'PENDING',
     Success = 'SUCCESS',
-    Failed = 'FAILED',
+    Failure = 'FAILURE',
     Processing = 'PROCESSING',
     Cancelled = 'CANCELLED',
 }
@@ -41,9 +41,10 @@ async function getOnRampTransactions(){
     }))
 }
 
-export default async function (){
+export default async function () {
     const balance = await getBalance();
     const transactions = await getOnRampTransactions();
+
     return <div className="w-full">
         <div className="text-4xl text-[#6a51a6] pt-8 mb-8 font-bold pl-4">
             Transfer
