@@ -19,18 +19,18 @@ export const OnRampTransactions = ({
     }[]
 }) => {
     if (!transactions.length) {
-        return <Card title="Recent Transactions">
+        return <Card title="Recent Transfers">
             <div className="text-center pb-8 pt-8">
-                No Recent transactions
+                No Recent transfers
             </div>
         </Card>
     }
-    return <Card title="Recent Transactions">
+    return <Card title="Recent Transfers">
         <div className="pt-2 ">
             {transactions.slice().reverse().map((t, index) => (  // Reverse the transactions array
                 <div key={index} className="flex justify-between">
                     <div>
-                        <div className="">
+                        <div>
                             {/* Handle all statuses from the database */}
                             {t.status.toUpperCase() === TransactionStatus.Success
                                 ? "Received"
@@ -49,8 +49,15 @@ export const OnRampTransactions = ({
                             {t.time.toDateString()}
                         </div>
                     </div>
-                    <div className="flex flex-col justify-center">
-                        + Rs {t.amount / 100}
+                    <div className={`flex flex-col justify-center ${
+                        t.status.toUpperCase() === TransactionStatus.Success ? 'text-green-500' :
+                        t.status.toUpperCase() === TransactionStatus.Failure ? 'text-red-500' :
+                        t.status.toUpperCase() === TransactionStatus.Processing ? 'text-yellow-500' :
+                        t.status.toUpperCase() === TransactionStatus.Pending ? 'text-blue-500' :
+                        t.status.toUpperCase() === TransactionStatus.Cancelled ? 'text-gray-500' :
+                        'text-gray-500'
+                    }`}>
+                        {t.status.toUpperCase() === TransactionStatus.Success ? '+ ' : ''}Rs {t.amount / 100}
                     </div>
                 </div>
             ))}

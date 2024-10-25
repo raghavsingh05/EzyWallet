@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   description: "An online wallet for all your transactions",
 };
 
+// Theek hai, ab hum layout.tsx ko server component ke roop mein rakhenge aur loading logic ko ek alag client component mein shift karenge.
+
+import LoadingWrapper from "../components/LoadingWrapper";
+
 export default function RootLayout({
   children,
 }: {
@@ -20,14 +24,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-      <body className={inter.className}>
+        <body className={inter.className}>
           <div className="min-w-screen min-h-screen bg-[#f0f8f6]">
             <NextTopLoader />
             <AppbarClient />
-            {children}
+            <LoadingWrapper>
+              {children}
+            </LoadingWrapper>
           </div>
         </body>
       </Providers>
     </html>
   );
 }
+
+// Ab aapko ek naya component banana hoga jise hum LoadingWrapper keh rahe hain.
+// Iss component mein aap loading logic aur SpinningWheel ko implement kar sakte hain.
+// Yaad rakhein ki iss naye component ke file ke shuruat mein "use client" directive add karna hoga.

@@ -1,10 +1,22 @@
-import { SidebarItem } from "../components/SidebarItem";
+"use client";
 
-export default function Layout({
-    children,
-}: {
-    children: React.ReactNode;
-}): JSX.Element {
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import SpinningWheel from '../../components/SpinningWheel';
+import { SidebarItem } from '../components/SidebarItem';
+
+function DashboardLayout({ children }: { children: React.ReactNode }) {
+    const [isLoading, setIsLoading] = useState(false);
+    const pathname = usePathname();
+
+    useEffect(() => {
+        setIsLoading(true);
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, [pathname]);
+
     return (
         <div className="flex">
             <div className="w-72 border-r border-slate-300 min-h-screen mr-4 pt-16">
@@ -13,13 +25,24 @@ export default function Layout({
                     <SidebarItem href={"/transfer"} icon={<TransferIcon />} title="Transfer" />
                     <SidebarItem href={"/transactions"} icon={<TransactionsIcon />} title="Transactions" />
                     <SidebarItem href={"/p2ptransfer"} icon={<P2pIcon />} title="P2P Transfer" />
-                    
                 </div>
             </div>
-            {children}
+            <div className="flex-grow relative">
+                {isLoading ? (
+                    <div className="absolute inset-0 flex items-center justify-center w-full h-full">
+                        <div className="flex items-center justify-center w-full h-full">
+                            <SpinningWheel />
+                        </div>
+                    </div>
+                ) : (
+                    children
+                )}
+            </div>
         </div>
     );
 }
+
+export default DashboardLayout;
 
 function HomeIcon() {
     return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">

@@ -38,6 +38,7 @@ export const AddMoney = () => {
                 <TextInput
                     label={"Amount"}
                     placeholder={"Amount"}
+                    // @ts-ignore
                     value={amount}
                     onChange={handleAmountChange}
                 />
