@@ -10,7 +10,8 @@
     "./center": "./src/Center.tsx",
     "./select": "./src/Select.tsx",
     "./textinput": "./src/TextInput.tsx",
-    "./progressbar": "./src/ProgressBar.tsx"
+    "./progressbar": "./src/ProgressBar.tsx",
+    "./buttonProps": "./src/buttonProps.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

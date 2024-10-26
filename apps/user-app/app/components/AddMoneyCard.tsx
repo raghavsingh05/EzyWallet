@@ -1,27 +1,30 @@
 "use client"
-import { Button } from "@repo/ui/button"
 import { Card } from "@repo/ui/card"
 import { Select } from "@repo/ui/select"
 import { TextInput } from "@repo/ui/textinput"
 import { useState } from "react"
-import { createOnRampTransaction } from "../lib/actions/createOnrampTransactions"
-
-const SUPPORTED_BANKS = [
-    {
-        name: "HDFC Bank",
-        redirectUrl: "https://netbanking.hdfcbank.com"
-    },
-    {
-        name: "Axis Bank",
-        redirectUrl: "https://netbanking.axisbank.com"  // Fixed URL typo
-    }
-];
+import { handleAddMoney } from "./HandleAddmoney"
+import { useRouter } from 'next/navigation'
+import { Button, ButtonProps } from "@repo/ui/buttonProps"
 
 export const AddMoney = () => {
+    const SUPPORTED_BANKS = [
+        {
+            name: "HDFC Bank",
+            redirectUrl: "http://localhost:3003/hdfcWebhook"
+        },
+        {
+            name: "Axis Bank",
+            redirectUrl: "http://localhost:3003/axisWebhook"
+        }
+    ];
+    const [amount, setAmount] = useState(""); 
+    const [isValid, setIsValid] = useState(true);
     const [redirectUrl, setRedirectUrl] = useState(SUPPORTED_BANKS[0]?.redirectUrl);
-    const [amount, setAmount] = useState("");  // Store amount as string initially
     const [provider, setProvider] = useState(SUPPORTED_BANKS[0]?.name || "");
-    const [isValid, setIsValid] = useState(true);  // Validation state
+    const [message, setMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
 
     const handleAmountChange = (value: string) => {
         if (/^[0-9]*$/.test(value)) {
@@ -29,6 +32,20 @@ export const AddMoney = () => {
             setAmount(value);
         } else {
             setIsValid(false);
+        }
+    };
+
+    const handleAddMoneyClick = async () => {
+        setIsLoading(true);
+        const result = await handleAddMoney(amount, provider || "", redirectUrl || "");
+        setMessage(result.message);
+        setIsLoading(false);
+        if (result.success) {
+            // Refresh the page
+            router.refresh();
+            
+            // Optional: Remove the message after a short delay
+            setTimeout(() => setMessage(''), 3000);
         }
     };
 
@@ -60,19 +77,20 @@ export const AddMoney = () => {
                 />
 
                 <div className="flex justify-center pt-4">
-                    <Button
-                        onClick={async () => {
-                            if (amount && isValid) {
-                                await createOnRampTransaction(Number(amount) * 100, provider);
-                                window.location.href = redirectUrl || "";
-                            } else {
-                                alert("Please enter a valid amount.");
-                            }
-                        }}
+                    <Button 
+                        onClick={handleAddMoneyClick} 
+                        isLoading={isLoading}
+                        variant="primary"
+                        size="medium"
                     >
                         Add Money
                     </Button>
                 </div>
+                {message && (
+                    <div className="fixed bottom-4 right-4 bg-blue-500 text-white px-6 py-3 rounded-full shadow-lg transition-opacity duration-300 ease-in-out z-50">
+                        <p className="text-center">{message}</p>
+                    </div>
+                )}
             </div>
         </Card>
     );

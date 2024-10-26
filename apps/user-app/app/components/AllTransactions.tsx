@@ -53,7 +53,7 @@ export const AllTransactions = ({
     };
 
     return (
-        <div className="w-4/5 mx-auto">
+        <div className="w-4/5">
             <Card title="All Transactions">
                 <div className="pt-2">
                     {sortedTransactions.map((t, index) => {
