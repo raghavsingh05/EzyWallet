@@ -5,7 +5,7 @@ import { TextInput } from "@repo/ui/textinput"
 import { useState } from "react"
 import { handleAddMoney } from "./HandleAddmoney"
 import { useRouter } from 'next/navigation'
-import { Button, ButtonProps } from "@repo/ui/buttonProps"
+import { Button } from "@repo/ui/buttonProps"
 
 export const AddMoney = () => {
     const SUPPORTED_BANKS = [

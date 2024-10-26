@@ -19,7 +19,7 @@ export function SendCard() {
         setMessage(result?.message || '');
         setIsLoading(false);
         router.refresh();
-        if (result?.message) {
+        if (result) {
             setMessage(result.message);
             setTimeout(() => {
                 setMessage('');
