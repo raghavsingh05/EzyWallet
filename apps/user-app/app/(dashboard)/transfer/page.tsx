@@ -15,14 +15,23 @@ enum TransactionStatus {
 
 async function getBalance(){
     const session = await getServerSession(authOptions);
+    const userId = session?.user?.id;
+    
+    if (!userId) {
+        throw new Error("User ID nahi mila, kya login hua hai?");
+    }
+
     const balance = await prisma.balance.findFirst({
-        where:{
-            userId:Number(session?.user?.id)
+        where: {
+            userId: {
+                equals: Number(userId)
+            }
         }
     });
+
     return {
-        amount:balance?.amount || 0,
-        locked:balance?.locked || 0
+        amount: balance?.amount || 0,
+        locked: balance?.locked || 0
     }
 }
 

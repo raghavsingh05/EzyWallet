@@ -27,7 +27,7 @@ export const OnRampTransactions = ({
     }
     return <Card title="Recent Transfers">
         <div className="pt-2 ">
-            {transactions.slice().reverse().map((t, index) => (  // Reverse the transactions array
+            {transactions.slice().reverse().slice(0, 4).map((t, index) => (
                 <div key={index} className="flex justify-between">
                     <div>
                         <div>

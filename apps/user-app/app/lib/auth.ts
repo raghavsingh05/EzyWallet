@@ -38,17 +38,43 @@ export const authOptions = {
                         password: hashedPassword
                     }
                 });
-            
+                
+                try {
+                    const newUser = await db.user.findFirst({
+                        where: {
+                            number: credentials.phone
+                        }
+                    });
+                    if (newUser?.id) {
+                        await db.balance.create({
+                            data: {
+                                userId: newUser.id,
+                                amount: 0,
+                                locked: 0
+                            }
+                        });
+                    } else {
+                        throw new Error("New user created but ID not found");
+                    }
+                } catch (balanceError) {
+                    console.error("Error creating balance entry:", balanceError);
+                    await db.user.delete({
+                        where: {
+                            id: user.id
+                        }
+                    });
+                    throw new Error("User registration failed due to balance creation error");
+                }
+                
                 return {
                     id: user.id.toString(),
                     name: user.name,
                     email: user.number
                 }
             } catch(e) {
-                console.error(e);
+                console.error("Error creating user or balance:", e);
+                return null;
             }
-
-            return null
           },
         })
     ],

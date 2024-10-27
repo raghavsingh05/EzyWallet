@@ -15,11 +15,11 @@ export async function handleAddMoney(amount: number | string, provider: string, 
             });
 
             if (onRampTransaction) {
-                const userId = onRampTransaction.id;
+                const userId = onRampTransaction.userId;
                 const paymentData = {
                     token: token,
                     user_identifier: userId,
-                    amount: amount
+                    amount: onRampTransaction.amount
                 };
 
                 const response = await fetch(redirectUrl, {
