@@ -41,9 +41,6 @@ app.post("/hdfcWebhook", async (req, res) => {
                 }
             });
 
-            console.log("Balance update result:", updatedBalance);
-            console.log("Transaction update result:", updatedTransaction);
-
             return { updatedBalance, updatedTransaction };
         });
 
