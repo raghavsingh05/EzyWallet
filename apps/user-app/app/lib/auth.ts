@@ -72,7 +72,7 @@ export const authOptions = {
                     email: user.number
                 }
             } catch(e) {
-                console.error("Error creating user or balance:", e);
+                console.error("Error creating user or balance: ", e);
                 return null;
             }
           },
