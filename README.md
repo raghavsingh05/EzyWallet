@@ -1,20 +1,21 @@
-- Clone the repo
+# EzyWallet, An online wallet for all your transactions
 
-```jsx
-git clone https://github.com/100xdevs-cohort-2/week-17-final-code
-```
+### Steps to Set Up the Repository Locally
 
-- npm install
-- Run postgres either locally or on the cloud (neon.tech)
+1. **Clone the Repository**  
+   Open your terminal and run the following command:
+   ```terminal
+   git clone https://github.com/raghavsingh05/Eventers.git
 
-```jsx
-docker run  -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
-```
+2. **Navigate into the project directory**  
+   Open your terminal and run the following command:
+   ```terminal
+   cd Eventers
 
-- Copy over all .env.example files to .env
-- Update .env files everywhere with the right db url
-- Go to `packages/db`
-    - npx prisma migrate dev
-    - npx prisma db seed
-- Go to `apps/user-app` , run `npm run dev`
-- Try logging in using phone - 1111111111 , password - alice (See `seed.ts`)
+2. **Install Dependencies**  
+   ```terminal
+   npm install
+
+3. **Start the application**
+   ```terminal
+   npm run dev
