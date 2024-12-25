@@ -7,24 +7,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const items = [
   {
-    question: "What payment methods do you accept?",
+    question: "What is EzyWallet?",
     answer:
-      "We accept all major credit cards, PayPal, and various other payment methods depending on your location. Please contact our support team for more information on accepted payment methods in your region.",
+      "EzyWallet is a digital wallet that allows you to easily add money from your bank and spend it among your peers.",
   },
   {
-    question: "How does the pricing work for teams?",
+    question: "How can I add money to my EzyWallet account?",
     answer:
-      "Our pricing is per user, per month. This means you only pay for the number of team members you have on your account. Discounts are available for larger teams and annual subscriptions.",
+      "You can add money to your EzyWallet account directly from your bank using secure payment methods.",
   },
   {
-    question: "Can I change my plan later?",
+    question: "Can I transfer money to others using EzyWallet?",
     answer:
-      "Yes, you can upgrade or downgrade your plan at any time. Changes to your plan will be prorated and reflected in your next billing cycle.",
+      "Yes, EzyWallet allows you to send money to your peers instantly, making transactions hassle-free.",
   },
   {
-    question: "Is my data secure?",
+    question: "How can I view my transaction history?",
     answer:
-      "Security is our top priority. We use state-of-the-art encryption and comply with the best industry practices to ensure that your data is stored securely and accessed only by authorized users.",
+      "EzyWallet keeps a detailed transaction history, allowing you to view all your previous transactions for easy tracking and management.",
   },
 ];
 

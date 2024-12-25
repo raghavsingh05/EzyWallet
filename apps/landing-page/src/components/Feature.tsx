@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import EcosystemIcon from '../assets/icons/ecosystem.svg';
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
-
+import BankIcon from '../assets/icons/bank.svg'
 export const Feature = ({ title, description }: { title: string; description: string }) => {
     const offsetX = useMotionValue(-100);
     const offsetY = useMotionValue(-100);
@@ -26,7 +26,7 @@ export const Feature = ({ title, description }: { title: string; description: st
             ref={border}
         ></motion.div>
         <div className='inline-flex h-14 w-14 bg-white text-black justify-center items-center rounded-lg'>
-            <EcosystemIcon />
+            <BankIcon />
         </div>
         <h3 className='mt-6 font-bold'>{title}</h3>
         <p className='mt-2 te xt-white/70'>{description}</p>

@@ -1,11 +1,19 @@
+"use client"
 import Image from "next/image";
 import logoImage from "../assets/images/tbimg.png"
 import MenuIcon from "../assets/icons/menu.svg"
+import { useRouter } from 'next/navigation';
 export const Navbar = () => {
+  const router = useRouter();
+  
+  const handleGetStartedClick = () => {
+    // Redirect to the login page of your dashboard app (running on port 3001)
+    router.push('http://localhost:3001'); // Replace with actual login page URL if deployed
+  };
   return <div className="bg-black"> 
   <div className="sm:px-8 px-4">
-    <div className="py-2 flex items-center justify-between">
-          <Image src={logoImage} alt="logo"className="sm:h-20 h-16 w-auto relative" />
+    <div className="py-2 flex items-center justify-between"> <a href="/">
+          <Image src={logoImage} alt="logo"className="sm:h-20 h-16 w-auto relative" /></a>
       <div className="border border-white border-opacity-30 h-10 w-10 inline-flex justify-center items-center sm:hidden">
       <MenuIcon className="text-white" />
       </div>
@@ -14,7 +22,7 @@ export const Navbar = () => {
         <a href="#features" className="text-opacity-80 text-white hover:text-opacity-100 transition"> Features </a>
         <a href="#faq" className="text-opacity-80 text-white hover:text-opacity-100 transition"> Help </a>
         <a href="#contact" className="text-opacity-80 text-white hover:text-opacity-100 transition"> Contact </a>
-        <button className="bg-white border-white border py-2 px-4 rounded-lg">  Get started</button>
+        <button className="bg-white border-white border py-2 px-4 rounded-lg" onClick={handleGetStartedClick}>  Get started</button>
       </nav>
     </div>
   </div>

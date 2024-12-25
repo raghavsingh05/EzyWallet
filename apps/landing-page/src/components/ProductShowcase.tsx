@@ -13,7 +13,7 @@ export const ProductShowcase = () => {
                 Intuitive interface <br />
               </h2>
               <div className="max-w-2xl mx-auto">
-                <p className="pt-4 pb-12 text-xl text-white/70">Celebrate the joy of accomplishment with an app designed to track your progress, motivate your efforts, and celebrate your success, one task at a time</p>
+                <p className="pt-4 pb-12 text-xl text-white/70">Navigate with ease using EzyWallet’s intuitive dashboard. Our sleek design allows you to manage your balance, track transactions, and explore features effortlessly.</p>
               </div>
             </>
           }
