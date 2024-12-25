@@ -63,7 +63,7 @@ const AccordionItem = ({ question, answer }: { question: string; answer: string 
 
 export const FAQs = () => {
   return (
-    <div className="bg-black text-white bg-gradient-to-b from-[#5D2CA8] to-black py-[72px] sm:py-24">
+    <div id='faq' className="bg-black text-white bg-gradient-to-b from-[#5D2CA8] to-black py-[72px] sm:py-24">
       <div className="container">
         <h2 className='text-center text-5xl font-bold tracking-tighter sm:text-6xl sm:max-w-[648px] mx-auto'>Frequently asked questions</h2>
         <div className='mt-12 max-w-[648px] mx-auto cursor-pointer'>

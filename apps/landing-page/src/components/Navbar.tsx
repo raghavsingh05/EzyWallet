@@ -10,10 +10,10 @@ export const Navbar = () => {
       <MenuIcon className="text-white" />
       </div>
       <nav className="gap-10 items-center hidden sm:flex">
-        <a href="#" className="text-opacity-80 text-white hover:text-opacity-100 transition"> Home </a>
-        <a href="#" className="text-opacity-80 text-white hover:text-opacity-100 transition"> About </a>
-        <a href="#" className="text-opacity-80 text-white hover:text-opacity-100 transition"> Features </a>
-        <a href="#" className="text-opacity-80 text-white hover:text-opacity-100 transition"> Help </a>
+        <a href="/" className="text-opacity-80 text-white hover:text-opacity-100 transition"> Home </a>
+        <a href="#features" className="text-opacity-80 text-white hover:text-opacity-100 transition"> Features </a>
+        <a href="#faq" className="text-opacity-80 text-white hover:text-opacity-100 transition"> Help </a>
+        <a href="#contact" className="text-opacity-80 text-white hover:text-opacity-100 transition"> Contact </a>
         <button className="bg-white border-white border py-2 px-4 rounded-lg">  Get started</button>
       </nav>
     </div>

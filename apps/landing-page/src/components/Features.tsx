@@ -20,7 +20,7 @@ const features = [
 
 export const Features = () => {
   return (
-    <div className="bg-black text-white py-[72px] sm:py-24 px-10">
+    <div id='features' className="bg-black text-white py-[72px] sm:py-24 px-10">
       <div className="container">
         <h2 className='text-center font-bold text-5xl sm:text-6xl tracking-tighter'>Everything you need</h2>
         <div className='max-w-xl mx-auto'>
