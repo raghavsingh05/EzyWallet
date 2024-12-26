@@ -5,7 +5,7 @@ export const Banner = () => {
   <div className="container">
     <p className="font-medium">
       <span className="hidden sm:inline">Introducing a lightweight online wallet - </span>
-      <Link href="http://localhost:3001" passHref className="underline underline-offset-4 ">
+      <Link href="https://ezywallet.dashboard.rajraghav.com" passHref className="underline underline-offset-4 ">
       Explore the demo </Link></p>
   </div>
   </div>
