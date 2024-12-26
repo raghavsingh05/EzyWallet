@@ -7,8 +7,7 @@ export const Navbar = () => {
   const router = useRouter();
   
   const handleGetStartedClick = () => {
-    // Redirect to the login page of your dashboard app (running on port 3001)
-    router.push('https://ezywallet.dashboard.rajraghav.com'); // Replace with actual login page URL if deployed
+    router.push('https://ezywallet.dashboard.rajraghav.com');
   };
   return <div className="bg-black"> 
   <div className="sm:px-8 px-4">
